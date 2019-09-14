@@ -23,5 +23,9 @@ Når brukeren har valgt en eller flere filmer, starter de å analyseres. Det bli
 Filmen blir så lagt inn i biblioteket, hvor brukeren kan behandle dem. 
 Skulle resultatet som ble gitt tilbake ikke være tilfredsstillende, kan brukeren høyre klikke på filmen, å velge mellom å slette(Fjerner ikke filen!) eller oppdatere den. 
 Hvis man ønsker å oppdatere den, blir man forespurt et hvilken tittel man søker. Etter brukeren har skrevet inn tittelen, returneres flere valg til brukeren, som kanskje passer bedre. 
+
+<p>
+    <img src="libUpdate.jpg" width="220" height="140" />
+</p>
  
 Når brukeren har valgt seg inn på en film, kan de se metadataen som er hektet på den. Her er det også mulighet til å gi stjerner til filmen basert på sin egen opplevelse. 
