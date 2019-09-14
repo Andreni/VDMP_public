@@ -14,8 +14,7 @@ Bygg api. Sett api og app som oppstarts applikasjoner i <Multiple Startup Projec
 <p>
     <img src="libSelection.jpg" width="220" height="140" />
 </p>
-Om VDMP:
-Beskrivelse: 
+
 VDMP er en applikasjon som brukeren kan benytte til å knytte filmer dem har på harddisken sin med metadata. 
 Etter brukeren har logget seg inn, har dem muligheten til å opprette et eller flere "bibliotek". 
 Når brukeren har opprettet et bibliotek, kan man navigere inn i dette, og å velg at man kan legge inn en samling med filmer, eller et enkelt objekt. 
