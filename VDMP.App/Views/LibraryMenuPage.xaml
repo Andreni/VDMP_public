@@ -1,0 +1,105 @@
+﻿<Page
+    x:Class="VDMP.App.Views.LibraryMenuPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:dBmodel="using:VDMP.DBmodel"
+    xmlns:helpers="using:VDMP.App.Helpers"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ButtonBackground" Color="DimGray" />
+                    <SolidColorBrush x:Key="ButtonForeground" Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="DimGray" />
+                    <helpers:BooleanToVisibility x:Key="ToVisibility" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <RelativePanel x:Name="ContentAreaa">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+            <Button x:Name="AddLibrary" Click="AddLibrary_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top"
+                   >
+                Add Library
+            </Button>
+
+
+            <controls:AdaptiveGridView Grid.Row="1" Grid.Column="0"
+                                       ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+                                       ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
+
+                                       SelectionMode="Single"
+                                       animations:Connected.ListItemElementName="itemThumbnail"
+                                       animations:Connected.ListItemKey="animationKeyLibraryMenu"
+                                       IsActiveView="True"
+                                       IsItemClickEnabled="True">
+                <controls:AdaptiveGridView.ItemTemplate>
+                    <DataTemplate x:DataType="dBmodel:Library">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{x:Bind LibraryName, Mode=OneWay}" />
+                            <TextBlock
+                                Margin="{StaticResource XXSmallTopMargin}"
+                                Text="{x:Bind LibraryType, Mode=OneWay}"
+                                Style="{ThemeResource BodyTextStyle}" />
+                            <TextBlock
+                                Margin="{StaticResource XXSmallTopMargin}"
+                                Text="{x:Bind LibraryOfMovies.Count, Mode=OneWay}"
+                                Style="{ThemeResource BodyTextStyle}" />
+                            <RelativePanel
+                                AllowFocusOnInteraction="True"
+                                x:Name="itemThumbnail"
+                                Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+                                Width="216" Height="300"
+                                RightTapped="ShowOptions">
+                                <StackPanel AllowFocusOnInteraction="False" Orientation="Vertical">
+                                    <RelativePanel AllowFocusOnInteraction="False">
+                                        <controls:AdaptiveGridView
+                                            ItemsSource="{ x:Bind LibraryOfMovies,Mode=OneWay}"
+                                            IsItemClickEnabled="False"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            IsActiveView="False"
+                                            SelectionMode="None"
+                                            IsEnabled="False">
+                                            <controls:AdaptiveGridView.ItemTemplate>
+                                                <DataTemplate x:DataType="dBmodel:Movie">
+                                                    <StackPanel>
+                                                        <RelativePanel
+                                                            x:Name="itemThumbnail"
+                                                            Background="SlateGray" Width="50" Height="75"
+                                                            IsAccessKeyScope="False" IsTapEnabled="False"
+                                                            IsDoubleTapEnabled="False" IsHoldingEnabled="False"
+                                                            IsHitTestVisible="False" AllowFocusOnInteraction="False">
+                                                            <StackPanel x:Name="StackPanelItem"
+                                                                        AllowFocusOnInteraction="False">
+                                                                <Image HorizontalAlignment="Stretch"
+                                                                       VerticalAlignment="Stretch"
+                                                                       Source="{x:Bind GridPosterImageSource,Mode=OneWay}"
+                                                                       AllowFocusOnInteraction="False" />
+
+                                                            </StackPanel>
+                                                        </RelativePanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </controls:AdaptiveGridView.ItemTemplate>
+                                        </controls:AdaptiveGridView>
+                                    </RelativePanel>
+
+
+                                </StackPanel>
+                            </RelativePanel>
+                        </StackPanel>
+
+                    </DataTemplate>
+                </controls:AdaptiveGridView.ItemTemplate>
+            </controls:AdaptiveGridView>
+        </StackPanel>
+    </RelativePanel>
+</Page>

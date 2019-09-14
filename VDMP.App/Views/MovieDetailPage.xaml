@@ -1,0 +1,144 @@
+﻿<Page
+    x:Class="VDMP.App.Views.MovieDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:foundation="using:Windows.Foundation"
+    xmlns:helpers="using:VDMP.App.Helpers"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <helpers:BooleanToVisibility x:Key="ToVisibility" />
+        <helpers:IntToVisibility x:Key="IntToVisibility" />
+    </Page.Resources>
+
+    <RelativePanel
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}"
+        animations:Connected.AnchorElement="{x:Bind itemHero}"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch">
+        <RelativePanel.Background>
+            <ImageBrush Opacity="0.2" ImageSource="{x:Bind Path=ViewModel.Item.BackdropImageSource,Mode=OneWay}" />
+        </RelativePanel.Background>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="propertiesGroup1.(RelativePanel.RightOf)" Value="itemHero" />
+                        <Setter Target="propertiesGroup1.(RelativePanel.Below)" Value="title" />
+                        <Setter Target="propertiesGroup2.(RelativePanel.RightOf)" Value="propertiesGroup1" />
+                        <Setter Target="propertiesGroup2.(RelativePanel.Below)" Value="title" />
+                        <Setter Target="propertiesGroup1.Width" Value="200" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel
+            x:Name="contentPanel">
+            <StackPanel.Background>
+                <SolidColorBrush Color="GhostWhite" Opacity="0.5" />
+            </StackPanel.Background>
+
+            <RelativePanel>
+                <StackPanel Orientation="Horizontal">
+
+                    <RelativePanel
+                        x:Name="itemHero"
+                        animations:Connected.Key="animationKeyContentGrid"
+
+                        Background="{ThemeResource SystemControlForegroundTransparentBrush}">
+                        <Image
+                            HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                            Source="{x:Bind ViewModel.Item.GridPosterImageSource,Mode=OneWay}" Width="480" Height="640" />
+
+                    </RelativePanel>
+
+
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            x:Name="title"
+
+                            Text="{x:Bind ViewModel.Item.TitleOfMovie, Mode=OneWay}"
+                            Style="{ThemeResource TitleTextBlockStyle}"
+                            Margin="{StaticResource XXSmallTopMargin}" />
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Margin="5,5,5,5" x:Name="propertiesGroup1"
+                                        Background="{ThemeResource SystemControlHighlightTransparentBrush}">
+
+                                <StackPanel x:Name="statusGroup" Margin="{StaticResource SmallTopMargin}">
+                                    <TextBlock Text="Tag line" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.Item.TagLine}"
+                                               Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical" x:Name="FileLocation"
+                                            Margin="{StaticResource SmallTopMargin}">
+                                    <TextBlock Text="Location on disk" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.Item.PathToVideo}"
+                                               Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+
+
+                            <StackPanel x:Name="propertiesGroup2" Orientation="Vertical">
+                                <StackPanel x:Name="shipToGroup" Margin="{StaticResource SmallTopMargin}">
+                                    <TextBlock Text="Runtime" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.Item.Runtime}"
+                                               Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                                </StackPanel>
+
+                                <StackPanel x:Name="orderTotalGroup" Margin="{StaticResource SmallTopMargin}">
+                                    <TextBlock Text="Language" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.Item.Language}"
+                                               Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                                    <TextBlock Text="Genre" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.Genre}"
+                                               Style="{StaticResource DetailBodyBaseMediumStyle}" />
+                                </StackPanel>
+                                <StackPanel x:Name="UserRating" Margin="{StaticResource SmallTopMargin}">
+                                    <TextBlock Text="Your rating" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <RatingControl x:Name="UserRatings" MaxRating="5" ValueChanged="UserUpdatedRating"
+                                                   Value="{x:Bind ViewModel.Item.Rating, Mode=TwoWay}" />
+                                </StackPanel>
+                                <StackPanel x:Name="AverageVDMPRating" Margin="{StaticResource SmallTopMargin}"
+                                            Visibility="{x:Bind ViewModel.Item.TMDbId, Converter={StaticResource IntToVisibility},Mode=OneWay}">
+                                    <TextBlock Text="Average VDMP Rating" Style="{StaticResource DetailSubTitleStyle}" />
+                                    <RatingControl MaxRating="5" AutomationProperties.Name="" IsReadOnly="True"
+                                                   PlaceholderValue="0"
+                                                   Value="{x:Bind ViewModel.AvgScore, Mode=TwoWay}"
+                                                   Caption="{x:Bind ViewModel.AvgUserAmount, Mode= TwoWay}" />
+
+                                </StackPanel>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Text="About" FontWeight="Bold" Style="{StaticResource DetailSubTitleStyle}"
+                                   Margin="{StaticResource SmallTopMargin}" />
+                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource DetailBodyStyle}" Width="500"
+                                   Margin="{StaticResource MediumBottomMargin}" Text="{x:Bind ViewModel.Item.Overview}" />
+                        <StackPanel Orientation="Horizontal" x:Name="ActionGroup">
+                            <Button x:Name="LoadSelectedMovie" Click="LoadSelectedMovie_OnClick">Play</Button>
+                            <Button x:Name="ResumePlayback" Click="LoadSelectedMovie_OnClick"
+                                    Visibility="{x:Bind ViewModel.ShowResume,Converter={StaticResource ToVisibility}}">
+                                Resume
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </RelativePanel>
+
+        </StackPanel>
+    </RelativePanel>
+</Page>

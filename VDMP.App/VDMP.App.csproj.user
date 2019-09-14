@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</Source>
+    <SmallTileSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</SmallTileSource>
+    <MediumTileSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</MediumTileSource>
+    <WideTileSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</WideTileSource>
+    <LargeTileSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</LargeTileSource>
+    <AppIconSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</AppIconSource>
+    <SplashScreenSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\admin\source\repos\VDMP\VDMP\VDMP.App\Assets\splashsquare.png</PackageLogoSource>
+  </PropertyGroup>
+</Project>

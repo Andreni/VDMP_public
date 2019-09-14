@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="VDMP.App.Views.MoviesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:dBmodel="using:VDMP.DBmodel"
+    xmlns:helpers="using:VDMP.App.Helpers"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ButtonBackground" Color="DimGray" />
+                    <SolidColorBrush x:Key="ButtonForeground" Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="DimGray" />
+                    <helpers:BooleanToVisibility x:Key="ToVisibility" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+
+    <RelativePanel x:Name="MainBox">
+
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top"
+                    Visibility="{x:Bind ViewModel.ReachDb,Converter={StaticResource ToVisibility}}">
+            <Button x:Name="AddCollection" Click="Add_OnClick" HorizontalAlignment="Left" VerticalAlignment="Center">Add Collection</Button>
+            <Button Margin="5" Click="ButtonBase_OnClick">Add Single item</Button>
+        </StackPanel>
+
+        <RelativePanel x:Name="ContentArea" Grid.Row="1" Grid.Column="0">
+            <controls:AdaptiveGridView
+                ItemsSource="{ x:Bind ViewModel.CollectionMovies,Mode=OneWay}"
+                ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
+                StretchContentForSingleRow="False"
+                SelectionMode="None"
+                IsItemClickEnabled="True"
+                Padding="{StaticResource MediumLeftRightMargin}"
+                animations:Connected.ListItemElementName="itemThumbnail"
+                animations:Connected.ListItemKey="animationKeyContentGrid"
+                DesiredWidth="160"
+                ItemHeight="300" HorizontalAlignment="Right" Margin="0,46,10,-46" Width="1500"
+                VerticalAlignment="Stretch">
+                <controls:AdaptiveGridView.ItemTemplate>
+                    <DataTemplate x:DataType="dBmodel:Movie">
+                        <RelativePanel
+                            x:Name="itemThumbnail"
+                            Background="SlateGray">
+                            <StackPanel x:Name="StackPanelItem" RightTapped="ShowOptions" HorizontalAlignment="Center"
+                                        VerticalAlignment="Top" Orientation="Vertical" Padding="0,0,0,0"
+                                        Margin="0,0,0,0">
+                                <Image Stretch="UniformToFill" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                       Source="{x:Bind GridPosterImageSource,Mode=OneWay}" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Text="{x:Bind TitleOfMovie,Mode=OneWay}"
+                                    Style="{ThemeResource BodyTextStyle}" />
+                            </StackPanel>
+                        </RelativePanel>
+                    </DataTemplate>
+                </controls:AdaptiveGridView.ItemTemplate>
+            </controls:AdaptiveGridView>
+        </RelativePanel>
+    </RelativePanel>
+</Page>
