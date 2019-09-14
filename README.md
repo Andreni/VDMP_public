@@ -11,6 +11,9 @@ Bygg solution.
 Rebuild App og så deploy den. 
 Bygg api. Sett api og app som oppstarts applikasjoner i <Multiple Startup Projects>. 
 
+<p>
+    <img src="libSelection.png" width="220" height="240" />
+</p>
 Om VDMP:
 Beskrivelse: 
 VDMP er en applikasjon som brukeren kan benytte til å knytte filmer dem har på harddisken sin med metadata. 
