@@ -1,4 +1,5 @@
 # VDMP_public
+<p>
 Et lite prosjekt som ble utviklet da jeg startet å lære .NET Core.
 Utviklet i C# med .NET Core rammeverket, som en UWP applikasjon.
 
@@ -10,7 +11,7 @@ Installasjons instrukser:
 Bygg solution. 
 Rebuild App og så deploy den. 
 Bygg api. Sett api og app som oppstarts applikasjoner i <Multiple Startup Projects>. 
-
+</p>
 <p>
     <img src="libSelection.jpg" width="220" height="140" />
 </p>
