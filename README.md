@@ -21,12 +21,12 @@ Sett in V3 Api nøkkel i VDMP.App/Scraper/TMDBApi.cs
 <p>
 VDMP er en applikasjon som brukeren kan benytte til å knytte filmer dem har på harddisken sin med metadata. 
 Etter brukeren har logget seg inn, har dem muligheten til å opprette et eller flere "bibliotek". 
-Når brukeren har opprettet et bibliotek, kan man navigere inn i dette, og å velg at man kan legge inn en samling med filmer, eller et enkelt objekt. 
+Når brukeren har opprettet et bibliotek, kan man navigere inn i dette og velge at man kan legge inn en samling med filmer, eller et enkelt objekt. 
 Når brukeren har valgt en eller flere filmer, starter de å analyseres. Det blir hentet ut et navn fra filen, som benyttes som et søk oppimot TMDb. Resultatet (hvis den finner noe) blir benyttet til å gjøre et "optimistisk" oppslag mot den første tittelen som passer best.  </p>
 <p>
-Filmen blir så lagt inn i biblioteket, hvor brukeren kan behandle dem. 
-Skulle resultatet som ble gitt tilbake ikke være tilfredsstillende, kan brukeren høyre klikke på filmen, å velge mellom å slette(Fjerner ikke filen!) eller oppdatere den. 
-Hvis man ønsker å oppdatere den, blir man forespurt et hvilken tittel man søker. Etter brukeren har skrevet inn tittelen, returneres flere valg til brukeren, som kanskje passer bedre. 
+Filmen blir så lagt inn i biblioteket hvor brukeren kan behandle dem. 
+Skulle resultatet som ble gitt tilbake ikke være tilfredsstillende, kan brukeren høyre klikke på filmen og velge mellom å slette (fjerner ikke filen!) eller oppdatere den. 
+Hvis man ønsker å oppdatere den, blir man forespurt et hvilken tittel man søker. Etter brukeren har skrevet inn tittelen, returneres flere valg til brukeren som kanskje passer bedre. 
 </p>
 <p>
     <img src="libUpdate.jpg" width="220" height="140" />
